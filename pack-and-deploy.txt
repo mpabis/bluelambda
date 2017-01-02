@@ -1,0 +1,8 @@
+# log into AWS
+aws configure
+
+# package the project
+aws cloudformation package --template-file bluelambda.yaml --output-template-file serverless-output.yaml --s3-bucket bluelambda
+
+# deploy
+aws cloudformation deploy --template-file serverless-output.yaml --stack-name bluelambda --capabilities CAPABILITY_IAM

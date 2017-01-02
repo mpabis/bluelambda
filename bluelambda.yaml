@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Create a Serverless stack with CloudFormation using Serverless Application Model
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  CSharpHelloWorld:
+    Type: AWS::Serverless::Function
+    Description: Use a lambda function to print Hello World
+    Properties:
+      Handler: bluelambda::CSharpFunction.HelloWorld::Handler
+      Runtime: dotnetcore1.0
+      CodeUri: ./bin/Debug/netcoreapp1.0/publish
+      MemorySize: 128
+      Timeout: 5
+      Events:
+        HelloResource:
+          Type: Api
+          Properties:
+            Path: /hello
+            Method: get
